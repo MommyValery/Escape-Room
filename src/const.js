@@ -1,9 +1,51 @@
 
 export const TYPES_TABS = [
-    'all-quests',
-    'adventures',
-    'horrors',
-    'mystic',
-    'detective',
-    'scifi'
+    {
+        type: 'AllQuests',
+        name: 'Все квесты'
+    },
+    {
+        type: 'Adventures',
+        name: 'Приключения'
+    },
+    {
+        type: 'Horrors',
+        name: 'Ужасы'
+    },
+    {
+        type: 'Mystic',
+        name: 'Мистика'
+    },
+    {
+        type: 'Detective',
+        name: 'Детективы'
+    },
+    {
+        type: 'Scifi',
+        name: 'scifi'
+    },
 ]
+
+
+export const getMenuItems = () => [
+    {
+      path: '/',
+      name: 'Квесты'
+    },
+    {
+      path: '#',
+      name: 'Новичкам'
+    },
+    {
+      path: '#',
+      name: 'Отзывы'
+    },
+    {
+      path: '#',
+      name: 'Акции'
+    },
+    {
+      path: '/contacts/',
+      name: 'Контакты'
+    },
+  ]
