@@ -26,7 +26,6 @@ export const TYPES_TABS = [
     },
 ]
 
-
 export const getMenuItems = () => [
     {
       path: '/',
@@ -48,4 +47,16 @@ export const getMenuItems = () => [
       path: '/contacts/',
       name: 'Контакты'
     },
-  ]
+]
+  
+export const StoreSlice = {
+    QUESTS : 'QUESTS',
+    DATA : 'DATA',
+}
+
+export const APIRoute = {
+    QUESTS: '/quests',
+    ORDERS: '/orders',
+  };
+
+export const DEFAULT_TYPE = 'Все квесты';
