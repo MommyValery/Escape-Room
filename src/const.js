@@ -59,4 +59,4 @@ export const APIRoute = {
     ORDERS: '/orders',
   };
 
-export const DEFAULT_TYPE = 'Все квесты';
+export const DEFAULT_TYPE = TYPES_TABS[0];

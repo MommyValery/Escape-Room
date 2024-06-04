@@ -10,24 +10,24 @@ export const Action = {
     RESET_STATE: 'quests/resetState'
 };
 
+  
+export const fetchQuests = createAsyncThunk(
+    Action.FETCH_QUESTS, 
+    async (api) => {
+        const {data}  = await api.get(APIRoute.QUESTS);
+        return data;
+    }  
+);
+
 export const getTypeToFilter = createAction(Action.GET_TYPE, (type) => ({ payload: type }));
 export const getIdQuest = createAction(Action.GET_ID_QUEST, (id) => ({ payload: id }));
 export const resetState = createAction(Action.RESET_STATE);
-
-export const fetchQuests = createAsyncThunk(
-    Action.FETCH_QUESTS, 
-    async () => {
-        const response = await fetch(APIRoute.QUESTS);
-        const {data} = await response.json();
-        return data;
-      }
-);
   
 export const fetchQuestById = createAsyncThunk(
     Action.FETCH_QUEST_BY_ID, 
-    async (id) => {
+    async ({id}, api) => {
         try {
-            const { data } = await fetch(`${APIRoute.QUESTS}/${id}`);
+            const { data } = await api.get(`${APIRoute.QUESTS}/${id}`);
             return data;
         } catch (error) {
             alert(error);

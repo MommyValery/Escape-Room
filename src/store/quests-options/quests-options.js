@@ -15,11 +15,11 @@ export const questsOptionsSlice = createSlice({
   extraReducers(builder) {
       builder
       .addCase(getTypeToFilter, (state, action) => {
-        state.type = action.payload;
+        state.type.name = action.payload;
       })
       .addCase(getIdQuest, (state, action) => {
         state.pickedId = action.payload;
-      })
+      })          
       .addCase(resetState, (state) => {
         state.type = initialState.type;
       });

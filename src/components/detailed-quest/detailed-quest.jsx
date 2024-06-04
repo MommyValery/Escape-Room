@@ -9,7 +9,7 @@ import { adaptJSONlevel, adaptJSONtype } from '../../utils';
 import { quest } from 'components/mocks';
 
 const DetailedQuest = () => {
-    const { title, id, description, coverImg, type, level, peopleCount, duration } = quest;
+    const { title, description, coverImg, type, level, peopleCount, duration } = quest;
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
    
     const onBookingBtnClick = () => {

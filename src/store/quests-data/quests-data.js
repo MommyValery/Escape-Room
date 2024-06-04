@@ -3,7 +3,8 @@ import { StoreSlice } from '../../const';
 import { fetchQuestById, fetchQuests } from '../action';
 
 const initialState = {
-  IsQuestDataLoading: false,
+  areQuestsLoading: false,
+  isQuestLoading: false,
 quests: [],
   activeQuest: {}
 };
@@ -17,23 +18,23 @@ export const questsDataSlice = createSlice({
       builder
           .addCase(fetchQuests.fulfilled, (state, action) => {
               state.quests = action.payload;
-              state.isOffersDataLoading = false;
+              state.areQuestsLoading = false;
           })
           .addCase(fetchQuests.pending, (state) => {
-              state.isOffersDataLoading = true;
+            state.areQuestsLoading = true;
           })
           .addCase(fetchQuests.rejected, (state) => {
-              state.isOffersDataLoading = false;
+            state.areQuestsLoading = false;
           })
           .addCase(fetchQuestById.pending, (state) => {
-              state.isOfferLoading = true;
+              state.isQuestLoading = true;
           })
           .addCase(fetchQuestById.fulfilled, (state, action) => {
               state.activeQuest = action.payload;
-              state.isOfferLoading = false;
+              state.isQuestLoading = false;
           })
           .addCase(fetchQuestById.rejected, (state) => {
-              state.isOfferLoading = false;
+              state.isQuestLoading = false;
           });
   }
 });

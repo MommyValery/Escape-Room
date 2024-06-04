@@ -48,25 +48,3 @@ const Header = () => {
                 );
 }
 export default Header;
-
-                {/*<S.LinkItem>
-                    <S.Link $isActiveLink to="/" onClick={handleClick}>
-                        Квесты
-                    </S.Link>
-                </S.LinkItem>
-
-                <S.LinkItem>
-                    <S.Link to="#">Новичкам</S.Link>
-                </S.LinkItem>
-
-                <S.LinkItem>
-                    <S.Link to="#">Отзывы</S.Link>
-                </S.LinkItem>
-
-                <S.LinkItem>
-                    <S.Link to="#">Акции</S.Link>
-                </S.LinkItem>
-
-                <S.LinkItem>
-                    <S.Link $isActiveLink to="/contacts" onClick={handleClick}>Контакты</S.Link>
-                </S.LinkItem>*/}
