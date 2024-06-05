@@ -16,7 +16,7 @@ const DetailedQuest = () => {
   const dispatch = useDispatch();
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false)
   const activeQuest = useSelector(getQuestById);
-  
+
   useEffect(() => {
     const { id } = params;
     if (id) {
