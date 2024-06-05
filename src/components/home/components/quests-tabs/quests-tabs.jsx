@@ -7,22 +7,23 @@ import { getTypeToFilter, resetState } from 'store/action';
 import { useState } from 'react';
 
 const QuestTabs = () => {
-    const dispatch = useDispatch();
-    const activeType = useSelector(getType);
-    const [, setIsActiveType] = useState(TYPES_TABS[0]);
-    const onTypeClick = (type) => {
-        setIsActiveType(type);
-        if (type === DEFAULT_TYPE) {
-            dispatch(resetState());
-        } else {
-            dispatch(getTypeToFilter(type));
-        }
+  const dispatch = useDispatch();
+  const activeType = useSelector(getType);
+  const [, setIsActiveType] = useState(TYPES_TABS[0]);
+  const handleTypeClick = (type) => {
+    setIsActiveType(type);
+    if (type === DEFAULT_TYPE) {
+      dispatch(resetState());
+    } else {
+      dispatch(getTypeToFilter(type));
     }
-    return (
-        <S.Tabs>
-          {TYPES_TABS.map((tab) => <TabItem tab={tab} key={tab.name}
-              isActive={tab.name === activeType.name} onClick={onTypeClick} />)}
-        </S.Tabs>
-    )
+  }
+  return (
+    <S.Tabs>
+      {TYPES_TABS.map((tab) => <TabItem tab={tab} key={tab.name}
+        isActive={tab.name === activeType.name} onClick={handleTypeClick} />)}
+    </S.Tabs>
+  )
 }
+
 export default QuestTabs;

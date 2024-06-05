@@ -5,18 +5,17 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 const QuestsCatalog = () => {
-    const quests = useSelector(getQuests);
-    //const areQuestsLoading = useSelector(getAreQuestsLoading);
-    const [, setActiveQuest] = useState(null);
-    const onQuestClick = (id) => {
-        setActiveQuest(id);
-      };
-   
+  const quests = useSelector(getQuests);
+  const [, setActiveQuest] = useState(null);
+  const handleQuestClick = (id) => {
+    setActiveQuest(id);
+  };
+
   return (
     <>
-        <QuestTabs />
-          <QuestsList onClick={onQuestClick} quests={quests} />
-      </>
+      <QuestTabs />
+      <QuestsList onClick={handleQuestClick} quests={quests} />
+    </>
   )
 }
 

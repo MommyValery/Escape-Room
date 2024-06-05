@@ -16,8 +16,8 @@ const App = () => (
     <S.GlobalStyle />
     <Router>
       <Switch>
-        <Route exact path="/quests/:id?">
-                    <DetailedQuest />
+        <Route exact path="/detailed-quest/:id?">
+          <DetailedQuest />
         </Route>
         <Route exact path="/contacts/">
           <Contacts />

@@ -7,26 +7,21 @@ import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 import { adaptJSONlevel, adaptJSONtype } from '../../utils';
 import { getQuestById } from 'store/quests-data/selectors';
-import { fetchQuestById, pushOrder } from 'store/action';
+import { fetchQuestById } from 'store/action';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
 
 const DetailedQuest = () => {
-    const params = useParams();
-    const dispatch = useDispatch();
-    const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
-    //const onSubmitForm = (formData, 'id') => {
-    //  dispatch(pushOrder({ id, ...formData }));
-    //};
+  const params = useParams();
+  const dispatch = useDispatch();
+  const [isBookingModalOpened, setIsBookingModalOpened] = useState(false)
+  const activeQuest = useSelector(getQuestById);
   
-
-    const activeQuest = useSelector(getQuestById);
-    
   useEffect(() => {
-      const { id } = params;
+    const { id } = params;
     if (id) {
       const parseId = Number(id);
-        dispatch(fetchQuestById(parseId));
+      dispatch(fetchQuestById(parseId));
     }
   }, [params, dispatch]);
 
@@ -34,11 +29,11 @@ const DetailedQuest = () => {
     return null;
   }
 
-    const { title, description, id, coverImg, type, level, duration, peopleCount } = activeQuest;
+  const { title, description, id, coverImg, type, level, duration, peopleCount } = activeQuest;
 
-    const onBookingBtnClick = () => {
-        setIsBookingModalOpened(!isBookingModalOpened);
-    };
+  const handleBookingBtnClick = () => {
+    setIsBookingModalOpened(!isBookingModalOpened);
+  };
       
   return (
     <MainLayout>
@@ -75,14 +70,15 @@ const DetailedQuest = () => {
               {description}
             </S.QuestDescription>
 
-            <S.QuestBookingBtn onClick={onBookingBtnClick}>
+            <S.QuestBookingBtn onClick={handleBookingBtnClick}>
               Забронировать
             </S.QuestBookingBtn>
           </S.PageDescription>
         </S.PageContentWrapper>
 
-              {isBookingModalOpened &&
-                  <BookingModal isBookingModalOpened={isBookingModalOpened} onBookingModalCloseClick={onBookingBtnClick} />}
+        { isBookingModalOpened &&
+         <BookingModal isBookingModalOpened={isBookingModalOpened} 
+         onBookingModalCloseClick={handleBookingBtnClick} />}
       </S.Main>
     </MainLayout>
   );

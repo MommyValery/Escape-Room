@@ -7,19 +7,17 @@ import { useState } from 'react';
 
 
 const QuestsList = ({quests}) => {
-    const activeType = useSelector(getType);
-    const filtredQuests = useSelector(getFilteredQuests);
-    const [, setDetailedQuest] = useState(null);
-    const onQuestClick = (id) => {
-        setDetailedQuest(id);
-    }
-    
-    return (
-        <S.QuestsList>
-           {((activeType.name === DEFAULT_TYPE.name) ? quests : filtredQuests)
-        .map((quest) => <QuestItem onClick={onQuestClick} {...quest} key={quest.id} />)}
-        </S.QuestsList>
-)
+  const activeType = useSelector(getType);
+  const filtredQuests = useSelector(getFilteredQuests);
+  const [, setDetailedQuest] = useState(null);
+  const handleQuestClick = (id) => setDetailedQuest(id);
+
+  return (
+    <S.QuestsList>
+      {((activeType.name === DEFAULT_TYPE.name) ? quests : filtredQuests)
+      .map((quest) => <QuestItem onClick={handleQuestClick} {...quest} key={quest.id} />)}
+    </S.QuestsList>
+  )
 }
 
 export default QuestsList;
