@@ -17,7 +17,7 @@ export const adaptJSONlevel = (level) => {
     switch (level) {
         case 'hard':
             return 'сложный';
-        case 'middle':
+        case 'medium':
             return 'средний';
         case 'easy':
             return 'легкий';

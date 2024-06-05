@@ -10,15 +10,15 @@ const renderIcon = (type) => {
     switch (type) {
         case 'AllQuests':
           return <IconAllQuests />;
-        case 'Adventures':
+        case 'adventures':
           return  <IconAdventures />;
-        case 'Horrors':
+        case 'horror':
            return <IconHorrors/>;
-        case 'Mystic':
+        case 'mystic':
            return <IconMystic />;
-        case 'Detective':
+        case 'detective':
            return <IconDetective />;
-        case 'Scifi':
+        case 'sci-fi':
            return <IconScifi />;
     }
 }

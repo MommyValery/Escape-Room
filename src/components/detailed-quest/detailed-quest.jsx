@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
@@ -6,19 +6,43 @@ import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 import { adaptJSONlevel, adaptJSONtype } from '../../utils';
-import { quest } from 'components/mocks';
+import { getQuestById } from 'store/quests-data/selectors';
+import { fetchQuestById, pushOrder } from 'store/action';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DetailedQuest = () => {
-    const { title, description, coverImg, type, level, peopleCount, duration } = quest;
-  const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
-   
-    const onBookingBtnClick = () => {
-        setIsBookingModalOpened(true);
-    };
+    const params = useParams();
+    const dispatch = useDispatch();
+    const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+    //const onSubmitForm = (formData, 'id') => {
+    //  dispatch(pushOrder({ id, ...formData }));
+    //};
+  
+
+    const activeQuest = useSelector(getQuestById);
     
+  useEffect(() => {
+      const { id } = params;
+    if (id) {
+      const parseId = Number(id);
+        dispatch(fetchQuestById(parseId));
+    }
+  }, [params, dispatch]);
+
+  if (!activeQuest) {
+    return null;
+  }
+
+    const { title, description, id, coverImg, type, level, duration, peopleCount } = activeQuest;
+
+    const onBookingBtnClick = () => {
+        setIsBookingModalOpened(!isBookingModalOpened);
+    };
+      
   return (
     <MainLayout>
-      <S.Main>
+      <S.Main key={id}>
         <S.PageImage
           src={`../${coverImg}`}
           alt={`Квест ${title}`}
@@ -39,7 +63,7 @@ const DetailedQuest = () => {
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPerson width="19" height="24" />
-                <S.FeatureTitle>{`${peopleCount[0]} - ${peopleCount[1]} чел`}</S.FeatureTitle>
+                <S.FeatureTitle>{peopleCount} чел</S.FeatureTitle>
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPuzzle width="24" height="24" />
@@ -57,7 +81,8 @@ const DetailedQuest = () => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal />}
+              {isBookingModalOpened &&
+                  <BookingModal isBookingModalOpened={isBookingModalOpened} onBookingModalCloseClick={onBookingBtnClick} />}
       </S.Main>
     </MainLayout>
   );

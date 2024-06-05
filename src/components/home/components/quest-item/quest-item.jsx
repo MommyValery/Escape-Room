@@ -1,12 +1,15 @@
 import * as S from '../quests-catalog/quests-catalog.styled';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
+import { adaptJSONlevel } from 'utils';
 
-const QuestItem = ({props}) => {
-   const { level, title, previewImg, peopleCount } = props;
+const QuestItem = ({ level, title, previewImg, id, peopleCount, onClick }) => {
+    const onMouseClick = () => {
+        onClick(id);
+      };
     return (
-        <S.QuestItem>
-<S.QuestItemLink to="/quest">
+        <S.QuestItem onClick={onMouseClick}>
+<S.QuestItemLink to={`/quests/${id}`}>
     <S.Quest>
         <S.QuestImage
             src={previewImg}
@@ -25,7 +28,7 @@ const QuestItem = ({props}) => {
                 </S.QuestFeatureItem>
                 <S.QuestFeatureItem>
                     <IconPuzzle />
-                    {level}
+                    {adaptJSONlevel(level)}
                 </S.QuestFeatureItem>
             </S.QuestFeatures>
         </S.QuestContent>

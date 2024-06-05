@@ -5,24 +5,24 @@ export const TYPES_TABS = [
         name: 'Все квесты'
     },
     {
-        type: 'Adventures',
+        type: 'adventures',
         name: 'Приключения'
     },
     {
-        type: 'Horrors',
+        type: 'horror',
         name: 'Ужасы'
     },
     {
-        type: 'Mystic',
+        type: 'mystic',
         name: 'Мистика'
     },
     {
-        type: 'Detective',
+        type: 'detective',
         name: 'Детективы'
     },
     {
-        type: 'Scifi',
-        name: 'scifi'
+        type: 'sci-fi',
+        name: 'Scifi'
     },
 ]
 

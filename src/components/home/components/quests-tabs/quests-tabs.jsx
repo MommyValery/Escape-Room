@@ -9,13 +9,13 @@ import { useState } from 'react';
 const QuestTabs = () => {
     const dispatch = useDispatch();
     const activeType = useSelector(getType);
-    const [isActiveType, setIsActiveType] = useState(TYPES_TABS[0]);
+    const [, setIsActiveType] = useState(TYPES_TABS[0]);
     const onTypeClick = (type) => {
         setIsActiveType(type);
-        if (type.name === DEFAULT_TYPE) {
+        if (type === DEFAULT_TYPE) {
             dispatch(resetState());
         } else {
-            dispatch(getTypeToFilter(type.name));
+            dispatch(getTypeToFilter(type));
         }
     }
     return (
